@@ -36,7 +36,7 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office, cellar;
+        Room outside, theater, pub, lab, office, cellar, tunnel, room, room1, room2, stairwell, doorroom, doorroom1, doorroom2, doorroom3, portals, portals1, tunnel1, goldenroom;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -44,7 +44,20 @@ public class Game
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
-        cellar = new Room("in the cellar");
+        cellar = new Room("in a cellar with the feeling of deja vu");
+        tunnel = new Room("in a tunnel with a shimmering wall");
+        room = new Room("in a mysterious room with stairs");
+        room1 = new Room("in a slightly more mysterious room with stairs");
+        room2 = new Room("in a very mysterious room with stairs");
+        stairwell = new Room("in a dark stairwell");
+        doorroom = new Room("in a room with 2 doors");
+        doorroom1 = new Room("in a room with 2 doors");
+        doorroom2 = new Room("in a room with 2 doors");
+        doorroom3 = new Room("in a room with 2 doors");
+        portals = new Room("in a room with 2 portals, one marked 'A' and the other marked 'B'");
+        portals1 = new Room("in a room with 2 portals, one marked 'A' and the other marked 'B'");
+        tunnel1 = new Room("in a tunnel with a door at the end, above the door is a sign that reads 'START'");
+        goldenroom = new Room("in a room filled with gold");
 
         // initialise room exits
         outside.setExit("east", theater);
@@ -57,6 +70,30 @@ public class Game
         office.setExit("west", lab);
         office.setExit("down", cellar);
         cellar.setExit("up", office);
+        cellar.setExit("east", tunnel);
+        tunnel.setExit("west", cellar);
+        tunnel.setExit("through", room);
+        room.setExit("up", room1);
+        room1.setExit("up", room2);
+        room1.setExit("down", cellar);
+        room2.setExit("down", stairwell);
+        room2.setExit("up", cellar);
+        stairwell.setExit("down", doorroom);
+        stairwell.setExit("up", cellar);
+        doorroom.setExit("left", doorroom1);
+        doorroom.setExit("right", cellar);
+        doorroom1.setExit("left", cellar);
+        doorroom1.setExit("right", doorroom2);
+        doorroom2.setExit("left", doorroom3);
+        doorroom2.setExit("right", cellar);
+        doorroom3.setExit("left", cellar);
+        doorroom3.setExit("right", portals);
+        portals.setExit("A", portals1);
+        portals.setExit("B", cellar);
+        portals1.setExit("A", cellar);
+        portals1.setExit("B", tunnel1);
+        tunnel1.setExit("START", goldenroom);
+        goldenroom.setExit("END", outside);
 
         currentRoom = outside;  // start game outside
     }
